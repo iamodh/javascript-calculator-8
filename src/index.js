@@ -1,4 +1,4 @@
-import App from "./App.js";
+import App from './App.js';
 
 const app = new App();
-await app.run();
+await app.run('1,2:3');
