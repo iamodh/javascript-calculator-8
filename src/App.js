@@ -2,7 +2,9 @@ class App {
   async run(input) {
     // 예외처리 1. input이 빈 문자열일때
     if (input.length === 0) {
-      console.error('입력 형식이 유효하지 않습니다. 입력이 비어있습니다.');
+      console.error(
+        '[Error] 입력 형식이 유효하지 않습니다. 입력이 비어있습니다.'
+      );
       return;
     }
     const separator = [':', ','];
@@ -16,7 +18,7 @@ class App {
       // 예외처리 1. prefix 형식이 유효하지 않을 때 (\n을 두 번 입력했을 때 또는 separator 하나 이외의 다른 문자가 포함되어 있을 때)
       if (origin.length === 0 || customSeparator.length > 1) {
         console.error(
-          '입력 형식이 유효하지 않습니다. 커스텀 구분자 추가 규칙을 확인해주세요.'
+          '[Error] 입력 형식이 유효하지 않습니다. 커스텀 구분자 추가 규칙을 확인해주세요.'
         );
         return;
       }
@@ -30,7 +32,7 @@ class App {
         continue;
       } else if (isNaN(Number(preprocessed[i]))) {
         console.error(
-          '입력 형식이 유효하지 않습니다. 숫자로 변환할 수 없는 문자가 포함되어 있습니다.'
+          '[Error] 입력 형식이 유효하지 않습니다. 숫자로 변환할 수 없는 문자가 포함되어 있습니다.'
         );
         return;
       }
@@ -52,6 +54,7 @@ class App {
       sum += Number(splits[i]);
     }
 
+    // 디버깅용 코드
     console.log(sum);
 
     return sum;
