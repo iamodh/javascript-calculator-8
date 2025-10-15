@@ -1,5 +1,12 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
+
 class App {
-  async run(input) {
+  async run() {
+    // 유저 입력
+    const input = await MissionUtils.Console.readLineAsync(
+      '덧셈할 문자열을 입력해 주세요.\n'
+    );
+
     // 예외처리 1. input이 빈 문자열일때
     if (input.length === 0) {
       console.error(
@@ -54,8 +61,7 @@ class App {
       sum += Number(splits[i]);
     }
 
-    // 디버깅용 코드
-    console.log(sum);
+    MissionUtils.Console.print(`결과 : ${sum}`);
 
     return sum;
   }

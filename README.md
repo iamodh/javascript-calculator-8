@@ -8,6 +8,6 @@
 
 - [ ] 사용자가 잘못된 값을 입력할 경우 "[Error]"로 시작하는 메시지와 함께 `Error`를 발생시킨 후 애플리케이션을 종료한다.
 
-- [ ] Console API의 `Console.readLineAsync()`를 사용하여 사용자 입력을 받고, `Console.print()`를 활용하여 결과를 출력한 후 프로그램을 종료한다.
+- [x] Console API의 `Console.readLineAsync()`를 사용하여 사용자 입력을 받고, `Console.print()`를 활용하여 결과를 출력한 후 프로그램을 종료한다.
 
 ## To do
