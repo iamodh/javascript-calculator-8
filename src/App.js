@@ -9,10 +9,8 @@ class App {
 
     // 예외처리 1. input이 빈 문자열일때
     if (input.length === 0) {
-      console.error(
-        '[Error] 입력 형식이 유효하지 않습니다. 입력이 비어있습니다.'
-      );
-      return;
+      //   console.error('입력 형식이 유효하지 않습니다. 입력이 비어있습니다.');
+      throw Error('[ERROR]');
     }
     const separator = [':', ','];
     let preprocessed = input;
@@ -22,12 +20,12 @@ class App {
       const [prefix, origin] = input.split('\n');
       const customSeparator = prefix.slice(2);
 
-      // 예외처리 1. prefix 형식이 유효하지 않을 때 (\n을 두 번 입력했을 때 또는 separator 하나 이외의 다른 문자가 포함되어 있을 때)
-      if (origin.length === 0 || customSeparator.length > 1) {
-        console.error(
-          '[Error] 입력 형식이 유효하지 않습니다. 커스텀 구분자 추가 규칙을 확인해주세요.'
-        );
-        return;
+      // 예외처리 1. prefix 형식이 유효하지 않을 때 (\n로 끝나지 않을 때 또는 \n이 두번 쓰였을 때 또는  separator 하나 이외의 다른 문자가 포함되어 있을 때)
+      if (!origin || origin.length === 0 || customSeparator.length > 1) {
+        // console.error(
+        //   '입력 형식이 유효하지 않습니다. 커스텀 구분자 추가 규칙을 확인해주세요.'
+        // );
+        throw Error('[ERROR]');
       }
       separator.push(customSeparator);
       preprocessed = origin;
@@ -38,10 +36,10 @@ class App {
       if (separator.includes(preprocessed[i])) {
         continue;
       } else if (isNaN(Number(preprocessed[i]))) {
-        console.error(
-          '[Error] 입력 형식이 유효하지 않습니다. 숫자로 변환할 수 없는 문자가 포함되어 있습니다.'
-        );
-        return;
+        // console.error(
+        //   '입력 형식이 유효하지 않습니다. 숫자로 변환할 수 없는 문자가 포함되어 있습니다.'
+        // );
+        throw Error('[ERROR]');
       }
     }
 
