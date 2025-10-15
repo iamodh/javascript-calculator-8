@@ -17,7 +17,7 @@ class App {
 
     // custom seperator 확인
     if (preprocessed.startsWith('//')) {
-      const [prefix, origin] = input.split('\n');
+      const [prefix, origin] = preprocessed.split('\\n'); // compare string \n, not newline character
       const customSeparator = prefix.slice(2);
 
       // 예외처리 1. prefix 형식이 유효하지 않을 때 (\n로 끝나지 않을 때 또는 \n이 두번 쓰였을 때 또는  separator 하나 이외의 다른 문자가 포함되어 있을 때)
