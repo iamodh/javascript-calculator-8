@@ -48,11 +48,11 @@ describe('문자열 계산기', () => {
   });
 
   test('커스텀 구분자와 함께 쉼표, 콜론 사용', async () => {
-    const inputs = ['//;\\n1,2:3'];
+    const inputs = ['//;\\n1,2:3;4'];
     mockQuestions(inputs);
 
     const logSpy = getLogSpy();
-    const outputs = ['결과 : 6'];
+    const outputs = ['결과 : 10'];
 
     const app = new App();
     await app.run();
@@ -64,6 +64,15 @@ describe('문자열 계산기', () => {
 
   test('예외 테스트', async () => {
     const inputs = ['-1,2,3'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('커스텀 구분자 예외 테스트', async () => {
+    const inputs = ['//!\n1~2,3'];
     mockQuestions(inputs);
 
     const app = new App();
