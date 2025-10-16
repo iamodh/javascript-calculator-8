@@ -1,9 +1,9 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
     // 유저 입력
-    const input = await MissionUtils.Console.readLineAsync(
+    const input = await Console.readLineAsync(
       '덧셈할 문자열을 입력해 주세요.\n'
     );
 
@@ -72,7 +72,7 @@ class App {
 
     MissionUtils.Console.print(`결과 : ${sum}`);
 
-    return sum;
+    Console.print(`결과 : ${sum}`);
   }
 }
 
