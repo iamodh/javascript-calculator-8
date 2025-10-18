@@ -32,22 +32,7 @@ describe('문자열 계산기', () => {
     });
   });
 
-  test('커스텀 구분자와 함께 쉼표 사용', async () => {
-    const inputs = ['//;\\n1,2'];
-    mockQuestions(inputs);
-
-    const logSpy = getLogSpy();
-    const outputs = ['결과 : 3'];
-
-    const app = new App();
-    await app.run();
-
-    outputs.forEach((output) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
-    });
-  });
-
-  test('커스텀 구분자와 함께 쉼표, 콜론 사용', async () => {
+  test('커스텀 구분자와 기본 구분자 사용', async () => {
     const inputs = ['//;\\n1,2:3;4'];
     mockQuestions(inputs);
 
@@ -62,7 +47,25 @@ describe('문자열 계산기', () => {
     });
   });
 
-  test('예외 테스트', async () => {
+  test('예외 테스트 - 공백 입력', async () => {
+    const inputs = [''];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 기본 문자열 오류 (기본 구분자 외의 문자 사용)', async () => {
+    const inputs = ['1~2'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 기본 문자열 오류 (음수 사용)', async () => {
     const inputs = ['-1,2,3'];
     mockQuestions(inputs);
 
@@ -71,8 +74,17 @@ describe('문자열 계산기', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
-  test('커스텀 구분자 예외 테스트', async () => {
-    const inputs = ['//!\n1~2,3'];
+  test('예외 테스트 - 커스텀 문자열 오류(\\n 생략)', async () => {
+    const inputs = ['//;1'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 커스텀 구분자 오류(\\n 중복)', async () => {
+    const inputs = ['//;1'];
     mockQuestions(inputs);
 
     const app = new App();
