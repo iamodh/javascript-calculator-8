@@ -47,6 +47,21 @@ describe('문자열 계산기', () => {
     });
   });
 
+  test('커스텀 구분자에 정규표현식 문자 사용', async () => {
+    const inputs = ['//|\\n1|2'];
+    mockQuestions(inputs);
+
+    const logSpy = getLogSpy();
+    const outputs = ['결과 : 3'];
+
+    const app = new App();
+    await app.run();
+
+    outputs.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    });
+  });
+
   test('예외 테스트 - 공백 입력', async () => {
     const inputs = [''];
     mockQuestions(inputs);
@@ -83,8 +98,26 @@ describe('문자열 계산기', () => {
     await expect(app.run()).rejects.toThrow('[ERROR]');
   });
 
-  test('예외 테스트 - 커스텀 구분자 오류(\\n 중복)', async () => {
-    const inputs = ['//;1'];
+  test('예외 테스트 - 커스텀 문자열 오류(\\n 중복)', async () => {
+    const inputs = ['//;\\n\\n1'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 커스텀 구분자가 존재하지 않는 경우', async () => {
+    const inputs = ['//\\n1'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('예외 테스트 - 커스텀 구분자가 두개 이상인 경우', async () => {
+    const inputs = ['//;!\\n1'];
     mockQuestions(inputs);
 
     const app = new App();
