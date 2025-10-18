@@ -12,56 +12,28 @@
 
 ## 리팩토링 목록
 
-### 요구사항 추가
-
-- [ ] custom separator가 2개 이상인 경우
-
-```
-현재
-input: //@#\n1@2#3
-result: [Error]
-
-원하는 결과
-result: 6
-```
-
 ### 예외처리 케이스 추가
 
-- [ ] custom separator가 기본 separator와 중복되는 경우
+- [ ] ~~custom separator가 기본 separator와 중복되는 경우 (//:"\n1:2)~~
 
-```
-현재
-input : //:\n1,2:3
-result: 6
-
-원하는 결과
-result: [Error]
-```
+> 커스텀 구분자 양식이 올바르다면 정상적으로 동작하는 것으로 간주함
 
 ### 커스텀 에러 사용
 
-- [ ]사용자가 발생한 에러를 구분하여 원인을 찾을 수 있도록 에러를 커스터마이징해보고 싶슾니다.
+- [ ] Error 클래스를 확장한 CustomStringInputError, BaseStringInputError 사용 예정
 
-```
-input: //!123
+### 코드 스타일 최적화
 
-현재
-throw Error("[ERROR]")
+- [x] 문자열을 여러 개의 구분자로 split할 때 for을 사용하는 대신 regex 사용
 
-원하는 결과
-CustomSpearatorError("커스텀 구분자 추가 규칙을 확인해주세요.")
+- [x] 최종 합계를 구할 때 for 대신 reuduce 사용
 
----
+- [ ] 관심사 분리를 통한 함수형 프로그래밍
 
-input: 1@2:3
+- [ ] [JavaScript Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript) 코딩 컨벤션 적용
 
-현재
-throw Error("[ERROR]")
+### 요구사항 추가
 
-원하는 결과
-SeparatorError("기본으로 지정된 구분자 이외의 문자를 사용하였습니다.")
-```
+- [ ] custom separator가 2개 이상인 경우 ("//@#\n1")
 
-### 코드 컨벤션 적용
-
-- [ ][JavaScript Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)를 참고하여 코드 스타일을 수정해보고 싶습니다.
+> 모든 작업이 끝난 후 TDD 이론 실습하며 구현 예정
