@@ -28,12 +28,12 @@
 
 - [x] 최종 합계를 구할 때 for 대신 reuduce 사용
 
-- [ ] 관심사 분리를 통한 함수형 프로그래밍
+- [x] 관심사 분리를 통한 함수형 프로그래밍
 
-- [ ] [JavaScript Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript) 코딩 컨벤션 적용
+- [x] [JavaScript Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript) 코딩 컨벤션 참고
 
 ### 요구사항 추가
 
 - [ ] custom separator가 2개 이상인 경우 ("//@#\n1")
 
-> 모든 작업이 끝난 후 TDD 이론 실습하며 구현 예정
+> 모든 작업이 끝난 후 TDD 이론 복습하며 구현 예정
