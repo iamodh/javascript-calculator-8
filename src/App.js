@@ -25,7 +25,9 @@ class App {
 
     // \\n 생략 또는 중복 확인
     if (splits.length !== 2) {
-      throw new Error('[ERROR] 커스텀 문자열 형식이 올바르지 않습니다.');
+      throw new Error(
+        '[ERROR] 커스텀 문자열 에러 : 문자열의 형식이 올바르지 않습니다.'
+      );
     }
 
     const [customString, baseString] = splits;
@@ -33,7 +35,9 @@ class App {
 
     // 커스텀 구분자가 없어가 두 개 이상인 경우
     if (customSeparator.length !== 1) {
-      throw new Error('[ERROR] 커스텀 구분자가 존재하지 않습니다.');
+      throw new Error(
+        '[ERROR] 커스텀 문자열 에러 : 문자열에 구분자가 존재하지 않습니다.'
+      );
     }
 
     return {
@@ -58,12 +62,14 @@ class App {
       const number = Number(string);
       if (isNaN(number)) {
         throw new Error(
-          '[ERROR] 입력에 숫자로 변환할 수 없는 문자가 포함되어 있습니다.'
+          '[ERROR] 타겟 문자열 에러 : 문자열에 숫자로 변환할 수 문자가 포함되어 있습니다.'
         );
       }
 
       if (number < 0) {
-        throw new Error('[ERROR] 입력에 음수가 포함되어 있습니다.');
+        throw new Error(
+          '[ERROR] 타겟 문자열 에러 : 문자열에 음수가 포함되어 있습니다.'
+        );
       }
 
       return number;
@@ -77,9 +83,7 @@ class App {
 
     // input이 빈 문자열일때
     if (input.length === 0) {
-      throw Error(
-        '[ERROR] 입력 형식이 유효하지 않습니다. 입력이 비어있습니다.'
-      );
+      throw new Error('[ERROR] 입력 에러 : 입력이 비어있습니다.');
     }
 
     // input에서 separators와 separators를 기준으로 분리할 baseString 추출
